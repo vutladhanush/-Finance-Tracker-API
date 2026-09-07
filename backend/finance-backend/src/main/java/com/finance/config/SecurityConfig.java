@@ -26,38 +26,42 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+
         http
-                // 🌟 Turn off CSRF for stateless REST APIs
                 .csrf(csrf -> csrf.disable())
 
-                // 🌟 THE FIX: Pass your custom configuration source explicitly
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
 
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
+
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**").permitAll()
                         .anyRequest().authenticated()
                 )
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+
+                .addFilterBefore(
+                        jwtAuthenticationFilter,
+                        UsernamePasswordAuthenticationFilter.class
+                );
 
         return http.build();
     }
 
-
-    // =========================
-    // CORS CONFIGURATION
-    // =========================
-
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
 
-        CorsConfiguration configuration =
-                new CorsConfiguration();
+        CorsConfiguration configuration = new CorsConfiguration();
 
+        // Added your active Vercel frontend URL along with local testing URLs
         configuration.setAllowedOrigins(
-                List.of( "https://finance-tracker-api-mauve.vercel.app")
+                List.of(
+                        "https://finance-tracker-api-mauve.vercel.app",
+                        "https://finance-tracker-ecru-one-75.vercel.app",
+                        "http://localhost:5173",
+                        "http://localhost:3000"
+                )
         );
 
         configuration.setAllowedMethods(
@@ -70,10 +74,16 @@ public class SecurityConfig {
                 )
         );
 
+        // Standardized headers to avoid pre-flight rejection
         configuration.setAllowedHeaders(
                 List.of(
                         "Authorization",
-                        "Content-Type"
+                        "Content-Type",
+                        "X-Requested-With",
+                        "Accept",
+                        "Origin",
+                        "Access-Control-Request-Method",
+                        "Access-Control-Request-Headers"
                 )
         );
 
@@ -89,11 +99,6 @@ public class SecurityConfig {
 
         return source;
     }
-
-
-    // =========================
-    // PASSWORD ENCODER
-    // =========================
 
     @Bean
     public PasswordEncoder passwordEncoder() {
