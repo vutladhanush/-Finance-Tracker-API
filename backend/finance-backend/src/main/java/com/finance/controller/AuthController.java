@@ -14,7 +14,6 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/auth")
-@CrossOrigin(origins = "https://finance-tracker-api-mauve.vercel.app")
 public class AuthController {
 
     private final UserRepository userRepository;
