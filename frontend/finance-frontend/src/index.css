@@ -1,0 +1,14 @@
+ :root
+ {
+   --primary-color: #4f46e5;
+   --secondary-color: #f3f4f6;
+   --text-color: #1f2937;
+   --background-color: #ffffff;
+   --card-background-color: #f9fafb;
+   --border-color: #e5e7eb;
+   --button-background-color: #4f46e5;
+   --button-text-color: #ffffff;
+   --button-hover-background-color: #4338ca;
+ }
+
+ 

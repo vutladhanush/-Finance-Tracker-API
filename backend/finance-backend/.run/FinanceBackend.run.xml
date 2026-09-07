@@ -1,0 +1,16 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="FinanceBackend" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <option name="ALTERNATIVE_JRE_PATH" value="17" />
+    <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+    <envs>
+      <env name="DB_URL" value="jdbc:mysql://localhost:3306/finance_db" />
+      <env name="DB_USERNAME" value="root" />
+      <env name="DB_PASSWORD" value="Dhanush@123" />
+    </envs>
+    <module name="finance-backend" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.finance.FinanceBackendApplication" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
