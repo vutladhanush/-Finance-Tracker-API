@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:8082/api";
+const API_URL = "http://localhost:8080/api";
 
 const getHeaders = (isJson = true) => {
   const token = localStorage.getItem("token");
