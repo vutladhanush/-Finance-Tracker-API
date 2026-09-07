@@ -60,15 +60,15 @@ export const createUser = async (userData) => {
 
   return handleResponse(response);
 };
-export const loginUser = async (userData) => {
+export const loginUser = async (loginData) => {
   const response = await fetch(
-    `${API_URL}/auth/login`,
+    `${API_URL}/api/auth/login`,
     {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(userData)
+      body: JSON.stringify(loginData),
     }
   );
 
