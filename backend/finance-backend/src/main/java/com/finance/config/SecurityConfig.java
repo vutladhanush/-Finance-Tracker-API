@@ -24,30 +24,18 @@ public class SecurityConfig {
         this.jwtAuthenticationFilter = jwtAuthenticationFilter;
     }
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-
-        http
-                .csrf(csrf -> csrf.disable())
-
-                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
-
-                .sessionManagement(session -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                )
-
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**").permitAll()
-                        .anyRequest().authenticated()
-                )
-
-                .addFilterBefore(
-                        jwtAuthenticationFilter,
-                        UsernamePasswordAuthenticationFilter.class
-                );
-
-        return http.build();
-    }
+   @Bean
+public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    http
+        .csrf(csrf -> csrf.disable()) // Disable CSRF for stateless REST APIs
+        .authorizeHttpRequests(auth -> auth
+            .requestMatchers("/login", "/api/v1/auth/**").permitAll() // Explicitly allow login
+            .anyRequest().authenticated()
+        );
+        
+    return http.build();
+}
+    
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
