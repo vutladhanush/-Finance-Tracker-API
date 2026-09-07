@@ -1,4 +1,5 @@
-const API_URL = "finance-tracker-production-0d88.up.railway.app/api";
+const API_URL = import.meta.env.VITE_API_URL ||"https://finance-tracker-api-production-651f.up.railway.app/api";
+
 
 const getHeaders = (isJson = true) => {
   const token = localStorage.getItem("token");
