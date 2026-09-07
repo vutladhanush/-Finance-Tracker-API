@@ -57,7 +57,7 @@ public class SecurityConfig {
                 new CorsConfiguration();
 
         configuration.setAllowedOrigins(
-                List.of("http://localhost:5173")
+                List.of( "https://finance-tracker-api-mauve.vercel.app/)
         );
 
         configuration.setAllowedMethods(
