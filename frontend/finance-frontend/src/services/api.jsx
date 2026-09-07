@@ -96,21 +96,14 @@ export const getUsers = async () => {
 // =========================
 
 export const getCategories = async () => {
-    const token = localStorage.getItem("token");
+  const response = await fetch(`${API_URL}/categories`, {
+    method: "GET",
+    headers: getHeaders(false),
+  });
 
-    const response = await fetch(
-        `${API_URL}/api/categories`,
-        {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`
-            }
-        }
-    );
-
-    return handleResponse(response);
+  return handleResponse(response);
 };
+
 // =========================
 // TRANSACTIONS
 // =========================
