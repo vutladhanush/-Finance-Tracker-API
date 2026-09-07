@@ -1,4 +1,4 @@
-const API_URL = "finance-tracker-production-0d88.up.railway.app";
+const API_URL = "finance-tracker-production-0d88.up.railway.app/api";
 
 const getHeaders = (isJson = true) => {
   const token = localStorage.getItem("token");
